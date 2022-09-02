@@ -2,12 +2,12 @@
 
 ## サイト概要
 社内メンバー同士でイベントへ参加したり・イベントを主催したりして、社内交流を盛り上げよう！！
-イベントへ参加する人は、気になるイベントへどんどん参加しよう！
-イベントを主催する人は、やりたい・やってみたいイベントをどんどん作成しよう！
+*イベントへ参加する人*は、気になるイベントへどんどん参加しよう！
+*イベントを主催する人*は、やりたい・やってみたいイベントをどんどん作成しよう！
 
 ### サイトテーマ
 社内メンバーのみ登録可のSNSアプリです。
-一般的なクラウドファンディングでは「お金」を集めますが、【クライベ】では「人」を集めます。
+一般的なクラウドファンディングでは「お金」を集めますが、**クライベ**では「人」を集めます。
 イベントへ参加する人とイベントを主催する人が簡単にマッチングし、部署の垣根を超えた社内メンバーの交流が実現できます。
 
 ### テーマを選んだ理由
@@ -27,10 +27,10 @@
 - 主催したいイベントを作成する
 
 ## 設計書
-- ガントチャート(https://docs.google.com/spreadsheets/d/1akuMxZzMuIpPiGVC8J_vKyL5z7LAwx7NWQGnhq44-dw/edit?usp=sharing)
-- ER図(https://drive.google.com/file/d/1l10_zyn0dLmictJfdAnusSHMkqZEvDUp/view?usp=sharing)
-- テーブル定義書(https://docs.google.com/spreadsheets/d/1vEXY9fAaMJsLEof00Ipzu-rCatcFpVAOgWiht8t96-k/edit?usp=sharing)
-- アプリケーション詳細設計書(https://docs.google.com/spreadsheets/d/1uSgFD2DmEJujHnRe0F8Jm4PRVPa2iI2vya_ec7WwKf4/edit?usp=sharing)
+- [ガントチャート](https://docs.google.com/spreadsheets/d/1akuMxZzMuIpPiGVC8J_vKyL5z7LAwx7NWQGnhq44-dw/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1l10_zyn0dLmictJfdAnusSHMkqZEvDUp/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1vEXY9fAaMJsLEof00Ipzu-rCatcFpVAOgWiht8t96-k/edit?usp=sharing)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1uSgFD2DmEJujHnRe0F8Jm4PRVPa2iI2vya_ec7WwKf4/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
