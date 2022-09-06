@@ -1,0 +1,75 @@
+<div class='container align-items-center'>
+  <div class='row mt-3'>
+    <div class='col-10'>
+
+<h5>新規会員登録</h5>
+  <div class='row form-group mt-3'>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+      <table>
+        <tr>
+          <td>名前<font color="red">*</font></td>
+          <td><%= f.label :"(姓)" %></td>
+          <td><%= f.text_field :last_name, autofocus: true, placeholder: "倉井部", class: "form-control" %></td>
+          <td><%= f.label :"(名)" %></td>
+          <td><%= f.text_field :first_name, autofocus: true, placeholder: "太郎", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>フリガナ<font color="red">*</font></td>
+          <td><%= f.label :"(セイ)" %></td>
+          <td><%= f.text_field :last_name_kana, autofocus: true, placeholder: "クライベ", class: "form-control" %></td>
+          <td><%= f.label :"(メイ)" %></td>
+          <td><%= f.text_field :first_name_kana, autofocus: true, placeholder: "タロウ", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :"メールアドレス" %><font color="red">*</font></td>
+          <td></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :"社員番号（任意）" %></td>
+          <td></td>
+          <td><%= f.text_field :employee_id, autofocus: true, placeholder: "0000", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :"所属（任意）" %></td>
+          <td></td>
+          <td><%= f.text_field :affiliation, autofocus: true, placeholder: "クラウド部イベント課", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :"自己紹介（任意）" %></td>
+          <td></td>
+          <td><%= f.text_area :body, autofocus: true, placeholder: "〇〇", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :"パスワード" %>
+            <% if @minimum_password_length %>
+              (<%= @minimum_password_length %> 文字以上)<font color="red">*</font>
+            <% end %>
+          </td>
+          <td></td>
+          <td>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :"パスワード(確認用)" %><font color="red">*</font></td>
+          <td></td>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+<h5>既に登録済みの方</h5>
+  <%= render "public/shared/links" %>
+
+    </div>
+  </div>
+</div>
