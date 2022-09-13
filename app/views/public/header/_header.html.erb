@@ -18,11 +18,39 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li>
+                <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
+                  <i class="fas fa-user"></i> <span class="font-size: small">マイページ
+                <% end %>
+              </li>
+              <li>
+                <%=  link_to users_path,class: 'nav-link text-light' do %>
+                  <i class="fas fa-users"></i> <span class="font-size: small">ユーザ一覧
+                <% end %>
+              </li>
+              <li>
+                <%=  link_to events_path,class: 'nav-link text-light' do %>
+                  <i class="fas fa-gifts"></i> <span class="font-size: small">イベント一覧
+                <% end %>
+              </li>
+              <li>
                 <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
                   <i class="fas fa-sign-out-alt"></i> <span class="font-size: small">ログアウト
                 <% end %>
               </li>
+              <li>
+                <%= render 'public/searches/search', events: @events %>
+              </li>
             <% else %>
+              <li>
+                <%= link_to about_path,class: 'nav-link text-light' do %>
+                  <i class="fas fa-home"></i> <span class="font-size: small">About
+                <% end %>
+              </li>
+              <li>
+                <%=  link_to events_path,class: 'nav-link text-light' do %>
+                  <i class="fas fa-gifts"></i> <span class="font-size: small">イベント一覧
+                <% end %>
+              </li>
               <li>
                 <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
                   <i class="fas fa-user-plus"></i> <span class="font-size: small">新規登録

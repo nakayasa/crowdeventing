@@ -1,0 +1,29 @@
+<table class='table'>
+<% if users.exists? %>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image(100, 100) %></td>
+        <td><%= user.last_name %><%= user.first_name %></td>
+        <td>フォロー数: <%= user.followings.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+        <% if current_user.following?(user) %>
+         <td><%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn btn-outline-secondary" %></td>
+        <% else %>
+         <td><%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-dark" %></td>
+        <% end %>
+        <td><%= link_to '詳細情報', user, class: "btn btn-info" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <h4>ユーザーはいません</h4>
+<% end %>

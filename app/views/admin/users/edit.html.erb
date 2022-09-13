@@ -1,2 +1,64 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-8 mx-auto">
+
+	  <h1>ユーザー情報の編集（管理者画面）</h1>
+
+    <% if @user.errors.any? %>
+      <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+       <ul>
+         <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+         <% end %>
+       </ul>
+    <% end %>
+
+    <%= form_with model: @user, url: admin_user_path, method: :patch do |user| %>
+      <div class="form-group">
+        <p>ユーザステータス</p>
+          <%= user.radio_button :delete_status, false %>
+            <%= user.label :delete_status, "有効" %>
+          <%= user.radio_button :delete_status, true %>
+            <%= user.label :delete_status, "退会" %>
+      </div>
+
+      <div class="form-group">
+        <p>氏名</p>
+        <%= user.text_field :last_name %>
+        <%= user.text_field :first_name %>
+      </div>
+
+      <div class="form-group">
+        <p>フリガナ</p>
+        <%= user.text_field :last_name_kana %>
+        <%= user.text_field :first_name_kana %>
+      </div>
+
+      <div class="form-group">
+        <p>メールアドレス</p>
+          <%= user.email_field :email %>
+      </div>
+
+      <div class="form-group">
+        <p>社員番号</p>
+          <%= user.text_field :employee_id %>
+      </div>
+
+      <div class="form-group">
+        <p>所属</p>
+          <%= user.text_field :affiliation %>
+      </div>
+
+      <div class="form-group">
+        <p>プロフィール画像</p>
+        <%= user.file_field :profile_image %>
+      </div>
+
+      <div class="form-group">
+        <%= user.submit "編集内容を保存", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,2 +1,94 @@
-<h1>Public::Events#show</h1>
-<p>Find me in app/views/public/events/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-7", style="padding:30px;">
+
+  <% if @event.user == current_user %>
+    <div class='col-3 mb-3'>
+      <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success form-control" %>
+    </div>
+  <% end %>
+
+<table class = 'table table-bordered'>
+  <tr>
+    <td width="150" align="center">イベント名</td>
+    <td><%= @event.name %></td>
+  </tr>
+  <tr>
+    <td align="center">ジャンル</td>
+    <td><%= @event.genre.name %></td>
+  </tr>
+  <tr>
+    <td align="center">説明</td>
+    <td><%= @event.body %></td>
+  </tr>
+  <tr>
+    <td align="center">開催日</td>
+    <td><%= @event.date %></td>
+  </tr>
+  <tr>
+    <td align="center">時間</td>
+    <td><%= @event.start_at.strftime("%H:%M") %>〜<%= @event.end_at.strftime("%H:%M") %></td>
+  </tr>
+  <tr>
+    <td align="center">場所</td>
+    <td><%= @event.location %></td>
+  </tr>
+  <tr>
+    <td align="center">費用</td>
+    <td><%= @event.cost %></td>
+  </tr>
+  <tr>
+    <td align="center">募集人数</td>
+    <td><%= @event.recruit %></td>
+  </tr>
+  <tr>
+    <td align="center">主催者</td>
+    <td>
+      <%= link_to user_path(@event.user.id) do %>
+        <%= @event.user.last_name + " " + @event.user.first_name %> さん
+      <% end %>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="col-4 mt-5">
+  <%= render 'join', event: @event %>
+
+<h5 class="mt-3">参加予定者</h5>
+  <% @joins.each do |join| %>
+    <ol><%= join.user.last_name + " " + join.user.first_name %> さん</ol>
+  <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+
+<div>
+  <%= form_with model: [@event, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '1', placeholder: "コメントをここに", size: "50x1" %>
+    <%= f.submit "コメントする", class:"btn btn-primary btn-sm ml-2 mb-4" %>
+  <% end %>
+</div>
+
+<p>コメント件数：<%= @event.comments.count %></p>
+<% @event.comments.each do |comment| %>
+  <%= image_tag comment.user.get_profile_image(30,30) %>
+    <%= comment.comment %>
+    (<%= comment.user.last_name %><%= comment.user.first_name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>)
+    <% if comment.user == current_user %>
+      <div class="btn btn-sm btn-outline-danger">
+        <%= link_to event_comment_path(comment.event, comment), method: :delete do %>
+          <font color="red">削除</font>
+        <% end %>
+      </div>
+    <% end %></br>
+<% end %>
+
+    </div>
+  </div>
+</div>

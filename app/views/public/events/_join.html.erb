@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <h2><strong><%= event.joins.count %> 人</strong>が参加予定！</h2>
+
+  <div class="col6 mt-3 ">
+  <% if event.joined_by?(current_user) %>
+    <div class="btn btn-success btn-lg">
+      <%= link_to event_joins_path(event), method: :delete do %>
+        <font color="white">♥参加申請済！
+        </font>
+      <% end %>
+    </div>
+    <br>（↑クリックで参加をキャンセルできます）
+    <% else %>
+    <div class="btn btn-primary btn-lg">
+      <%= link_to event_joins_path(event), method: :post do %>
+        <font color="white">♡クリックで参加！
+        </font>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+<% end %>

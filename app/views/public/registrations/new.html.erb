@@ -10,36 +10,36 @@
         <tr>
           <td>名前<font color="red">*</font></td>
           <td><%= f.label :"(姓)" %></td>
-          <td><%= f.text_field :last_name, autofocus: true, placeholder: "倉井部", class: "form-control" %></td>
+          <td><%= f.text_field :last_name, autofocus: true, placeholder: "例：倉井部", class: "form-control", size: "25x1" %></td>
           <td><%= f.label :"(名)" %></td>
-          <td><%= f.text_field :first_name, autofocus: true, placeholder: "太郎", class: "form-control" %></td>
+          <td><%= f.text_field :first_name, autofocus: true, placeholder: "例：太郎", class: "form-control", size: "25x1" %></td>
         </tr>
         <tr>
           <td>フリガナ<font color="red">*</font></td>
           <td><%= f.label :"(セイ)" %></td>
-          <td><%= f.text_field :last_name_kana, autofocus: true, placeholder: "クライベ", class: "form-control" %></td>
+          <td><%= f.text_field :last_name_kana, autofocus: true, placeholder: "例：クライベ", class: "form-control" %></td>
           <td><%= f.label :"(メイ)" %></td>
-          <td><%= f.text_field :first_name_kana, autofocus: true, placeholder: "タロウ", class: "form-control" %></td>
+          <td><%= f.text_field :first_name_kana, autofocus: true, placeholder: "例：タロウ", class: "form-control" %></td>
         </tr>
         <tr>
           <td><%= f.label :"メールアドレス" %><font color="red">*</font></td>
           <td></td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：sample@example.com", class: "form-control" %></td>
         </tr>
         <tr>
           <td><%= f.label :"社員番号（任意）" %></td>
           <td></td>
-          <td><%= f.text_field :employee_id, autofocus: true, placeholder: "0000", class: "form-control" %></td>
+          <td><%= f.text_field :employee_id, autofocus: true, placeholder: "例：0001", class: "form-control" %></td>
         </tr>
         <tr>
           <td><%= f.label :"所属（任意）" %></td>
           <td></td>
-          <td><%= f.text_field :affiliation, autofocus: true, placeholder: "クラウド部イベント課", class: "form-control" %></td>
+          <td><%= f.text_field :affiliation, autofocus: true, placeholder: "例：クラウド部イベント課", class: "form-control" %></td>
         </tr>
         <tr>
           <td><%= f.label :"自己紹介（任意）" %></td>
           <td></td>
-          <td><%= f.text_area :body, autofocus: true, placeholder: "〇〇", class: "form-control" %></td>
+          <td><%= f.text_area :body, autofocus: true, placeholder: "例：こんにちは！！", class: "form-control", size: "25x5"  %></td>
         </tr>
         <tr>
           <td>

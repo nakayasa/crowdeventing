@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3", style="padding:50px;">
+    <!-- ジャンル選択のサイドバー -->
+    <%= render 'admin/events/admin_genres_sidebar', genres: @genres %>
+    <!-- ジャンル選択のサイドバー -->
+    </div>
+    <div class="col-9 item-index", style="padding:50px;">
+      <h4>"<%= @genre.name %>"一覧</h4>（全<%= @genre.events.count %>件）
+      <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th></th>
+          <th>イベント名</th>
+          <th>開催日</th>
+          <th>時刻</th>
+          <th>場所</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @genre.events.each do |event| %>
+        <tr>
+          <td><strong><%= event.recruit %>人</strong>募集</br>（<%= event.joins.count %>人参加）</td>
+          <td>
+            <%= link_to admin_event_path(event.id) do %>
+              <strong><%= event.name %></strong>
+            <% end %>
+          </td>
+          <td><%= event.date %></td>
+          <td><%= event.start_at.strftime("%H:%M") %>〜<%= event.end_at.strftime("%H:%M") %></td>
+          <td><%= event.location %></td>
+        </tr>
+      <% end %>
+      </tbody>
+      </table>
+    </div>
+</div>

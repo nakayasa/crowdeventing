@@ -1,2 +1,82 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class='row mt-3'>
+    <h2>登録情報(管理者画面)</h2>
+
+      <div class='col-9 mt-5 d-flex'>
+        <%= image_tag @user.get_profile_image(100,100) %>
+          <div class='col-4 mt-5'>
+              <%= link_to edit_admin_user_path(@user.id) do %>
+              <div class="btn btn-outline-secondary btn-block">
+                <i class="fas fa-user-cog"></i>
+              </div>
+            <% end %>
+          </div>
+      </div>
+
+<table class='table table-bordered mt-4'>
+  <tr>
+    <td>ユーザステータス</td>
+    <td>
+      <% if @user.delete_status? %>
+        <div class="text-secondary">退会済</div>
+      <% else %>
+        <div class="text-success">有効</div>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>氏名</td>
+    <td><%= @user.last_name + "　" + @user.first_name %></td>
+  </tr>
+  <tr>
+    <td>カナ</td>
+    <td><%= @user.last_name_kana + "　" + @user.first_name_kana %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>社員番号</td>
+    <td><%= @user.employee_id %></td>
+  </tr>
+  <tr>
+    <td>所属</td>
+    <td><%= @user.affiliation %></td>
+  </tr>
+  <tr>
+    <td>自己紹介</td>
+    <td><%= @user.body %></td>
+  </tr>
+</table>
+
+<table class="table table-hover table-inverse">
+  <thead>
+  <h2>イベント一覧</h2>
+    <tr>
+      <th></th>
+      <th>イベント名</th>
+      <th>日付</th>
+      <th>時刻</th>
+      <th>参加人数</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= link_to user_path(event.user_id) do %>
+            <%= image_tag @user.get_profile_image(80, 80) %>
+          <% end %>
+      </td>
+      <td><%= link_to event.name, event_path(event.id) %></td>
+      <td><%= event.date %></td>
+      <td><%= event.start_at %>〜<%= event.end_at %></td>
+      <td><%= event.joins.count %>人</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+</div>

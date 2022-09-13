@@ -1,2 +1,51 @@
-<h1>Admin::Events#show</h1>
-<p>Find me in app/views/admin/events/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8", style="padding:50px;">
+
+    <div class='col-3'>
+      <%= link_to "編集する", edit_admin_event_path(@event.id), class: "btn btn-success form-control" %>
+    </div>
+
+<table class = 'table table-bordered'>
+  <tr>
+    <td>イベント名</td>
+    <td><%= @event.name %></td>
+  </tr>
+  <tr>
+    <td>ジャンル</td>
+    <td><%= @event.genre.name %></td>
+  </tr>
+  <tr>
+    <td>説明</td>
+    <td><%= @event.body %></td>
+  </tr>
+  <tr>
+    <td>開催日</td>
+    <td><%= @event.date %></td>
+  </tr>
+  <tr>
+    <td>時間</td>
+    <td><%= @event.start_at.strftime("%H:%M") %>〜<%= @event.end_at.strftime("%H:%M") %></td>
+  </tr>
+  <tr>
+    <td>場所</td>
+    <td><%= @event.location %></td>
+  </tr>
+  <tr>
+    <td>費用</td>
+    <td><%= @event.cost %></td>
+  </tr>
+  <tr>
+    <td>募集人数</td>
+    <td><%= @event.recruit %></td>
+  </tr>
+  <tr>
+    <td>主催者</td>
+    <td><%= @event.user.last_name + " " + @event.user.first_name %> さん</td>
+  </tr>
+</table>
+
+<h5>参加予定者</h5>
+  <% @joins.each do |join| %>
+    <ol><%= join.user.last_name + " " + join.user.first_name %> さん</ol>
+  <% end %>

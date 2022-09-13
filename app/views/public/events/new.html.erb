@@ -1,2 +1,54 @@
-<h1>Public::Events#new</h1>
-<p>Find me in app/views/public/events/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-4">
+
+  <h2 class="ml-5">イベントを主催する</h2>
+    <div class="mt-4">
+      <%= form_with model: @event, url: events_path do |f| %>
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">イベント名</label>
+        <%= f.text_field :name, class:"form-control", placeholder:"例：ビアガーデン", size: "40x1" %>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">説明</label>
+          <%= f.text_area :body, class:"form-control", rows:"5", placeholder:"例：開放的なテラス席でお酒を飲みましょう！", size: "40x10" %>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">ジャンル</label>
+          <% f.text_field :genre_id, class:"form-control" %>
+            <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name_was), include_blank: "--選択してください--" %>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">開催日</label>
+          <%= f.date_field :date, class:"form-control"%>
+       </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">時間</label>
+          <%= f.time_field :start_at, class:"form-control", ignore_data:true %>
+          〜
+          <%= f.time_field :end_at, class:"form-control", ignore_data:true %>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">場所</label>
+        <%= f.text_field :location, class:"form-control", placeholder:"例：新宿駅近くのテラスビアガーデン", size: "40x1" %>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">費用</label>
+        <%= f.text_field :cost, class:"form-control", placeholder:"例：約4,000円" %>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="col-3 col-form-label">募集人数</label>
+        <%= f.select :recruit, *[1..99] %>
+      </div>
+
+      <label class="col-7 mx-auto d-block"><%= f.submit '新規登録', class:"btn btn-success btn-lg" %></label>
+
+      <% end %>
+    </div>
