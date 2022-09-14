@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2022_09_11_063522) do
     t.integer "host_user_id", null: false
     t.integer "event_id"
     t.integer "comment_id"
-    t.string "action", default: "", null: false
+    t.string "action"
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -132,4 +132,8 @@ ActiveRecord::Schema.define(version: 2022_09_11_063522) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "events"
+  add_foreign_key "notifications", "users", column: "host_user_id"
+  add_foreign_key "notifications", "users", column: "join_user_id"
 end

@@ -43,6 +43,11 @@
       </div>
 
       <div class="form-group form-inline">
+        <label class="col-3 col-form-label">自己紹介</label>
+          <%= user.text_area :body %>
+      </div>
+
+      <div class="form-group form-inline">
         <label class="col-3 col-form-label">プロフィール画像</label>
         <%= user.file_field :profile_image , accept: 'image/*' %>
       </div>

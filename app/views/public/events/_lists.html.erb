@@ -6,6 +6,7 @@
           <th>開催日</th>
           <th>時刻</th>
           <th>場所</th>
+          <th>主催者</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -22,6 +23,11 @@
           <td><%= event.date %></td>
           <td><%= event.start_at.strftime("%H:%M") %>〜<%= event.end_at.strftime("%H:%M") %></td>
           <td><%= event.location %></td>
+          <td>
+            <%= link_to user_path(event.user.id) do %>
+              <%= event.user.last_name + " " + event.user.first_name %> さん
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </tbody>
