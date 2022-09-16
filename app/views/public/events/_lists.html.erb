@@ -14,7 +14,11 @@
       <tbody>
       <% events.each do |event| %>
         <tr>
-          <td><strong><%= event.recruit %>人</strong>募集</br>（<%= event.joins.count %>人参加）</td>
+          <td>
+            <strong><%= (event.joins.count.to_f / event.recruit.to_f * 100).round %>%</strong>達成</br>
+            <%= event.joins.count %>人参加
+            （<strong><%= event.recruit %>人</strong>募集）
+          </td>
           <td>
             <%= link_to event_path(event.id) do %>
               <strong><%= event.name %></strong>

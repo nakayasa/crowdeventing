@@ -26,6 +26,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
+    get "event/past" => "events#past"
     resources :events, only: [:new, :create, :update, :index, :show, :edit] do
       resources :comments, only: [:create, :destroy]
       resource :joins, only: [:create, :destroy]

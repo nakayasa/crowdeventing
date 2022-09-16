@@ -5,10 +5,10 @@
     <h2>ジャンル一覧・追加</h2>
 
       <table class="mt-5">
-        <td>ジャンル名</td>
         <td>
           <%= form_with model: @genre, url: admin_genres_path do |f| %>
-            <%= f.text_field :name, placeholder:"ジャンル名" %>
+            <%= f.text_field :name, placeholder:"ジャンル名" %></br>
+            <%= f.file_field :genre_image, accept: 'image/*' %></br>
             <input type="submit" name="commit" value="新規登録" class="btn btn-success" data-disable-with="新規登録">
           <% end %>
         </td>

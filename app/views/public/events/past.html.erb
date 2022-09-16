@@ -5,10 +5,10 @@
   </div>
 
     <div class="col-9">
-      <h4 style="padding-top:50px;">イベント一覧</h4>（全<%= @events.count %>件）
+      <h4 style="padding-top:50px;">過去のイベント一覧</h4>（全<%= @events.count %>件）
 
-      <%= link_to event_past_path do %>
-        <div class="btn btn-sm btn-dark rounded-pill mb-2">過去のイベント一覧</div>
+      <%= link_to events_path do %>
+        <div class="btn btn-sm btn-primary rounded-pill mb-2">イベント一覧</div>
       <% end %>
 
       <%= render 'lists', events: @events %>

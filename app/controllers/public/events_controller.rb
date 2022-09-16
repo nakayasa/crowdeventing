@@ -21,7 +21,14 @@ class Public::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all.order(:date, :start_at)
+    @events = Event.where("date >= ?", DateTime.now).reorder(:date, :start_at)
+    @event = Event.new
+    @user = current_user
+    @genres = Genre.all
+  end
+
+  def past
+    @events =  Event.where("date < ?", DateTime.now).reorder(:date, :start_at).reverse
     @event = Event.new
     @user = current_user
     @genres = Genre.all

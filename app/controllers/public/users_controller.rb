@@ -16,7 +16,6 @@ class Public::UsersController < ApplicationController
     @event_sort = Event.order(date: "DESC", start_at: "DESC")
     #Joinしたイベントを探す
     @join_events = @event_sort.find(joins)
-
   end
 
   def edit

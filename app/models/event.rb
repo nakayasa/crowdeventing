@@ -30,7 +30,7 @@ class Event < ApplicationRecord
 	    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
       temp_ids = Comment.where(event_id: id).select(:user_id).where.not("user_id = ? or user_id = ?", current_user.id, user_id).distinct
 	    temp_ids.each do |temp_id|
-	        save_notification_comment!(current_user, comment_id, temp_id['user_id'])
+	        save_notification_comment(current_user, comment_id, temp_id['user_id'])
         end
     	# まだ誰もコメントしていない場合は、投稿者に通知を送る
     	save_notification_comment(current_user, comment_id, user_id)
@@ -50,5 +50,9 @@ class Event < ApplicationRecord
         end
         notification.save if notification.valid?
      end
+
+    def start_time #start_time以外の名前の開始時刻属性を持つモデルがある場合、またはリレーションシップを介してアクセスする場合は、my_model.rbファイルでstart_timeメソッドを定義することで属性のエイリアスを作成でき、上記のように個別に指定する必要はありません。」（Google翻訳ママ)
+      self.date #self.の後はsimple_calendarに表示させるためのカラムを指定
+    end
 
 end
