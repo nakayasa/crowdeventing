@@ -3,7 +3,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="">
-          <a class="navbar-brand" href="/"><span>クライベ -crowdeventing-</span></a>
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'logo.png', size:"40x40", class:"rounded-pill" %>
+            <span>クライベ -crowdeventing-</span>
+          </a>
         </div>
         <div class="　text-align: right">
           <% if  user_signed_in? %>
@@ -33,7 +36,7 @@
                 <% end %>
               </li>
             <% if unchecked_notifications.any? %>
-              <i class="fa fa-circle" style="color: gold;"></i>
+              <i class="fa fa-circle font-size: small" style="color: gold;"></i>
             <% end %>
               <li>
                 <%=  link_to notifications_path,class: 'nav-link text-light' do %>
@@ -51,7 +54,7 @@
             <% else %>
               <li>
                 <%= link_to about_path,class: 'nav-link text-light' do %>
-                  <i class="fas fa-home"></i> <span class="font-size: small">About
+                  <i class="fas fa-home"></i> <span class="font-size: small">トップ
                 <% end %>
               </li>
               <li>

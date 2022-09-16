@@ -17,7 +17,7 @@
           <td>
             <strong><%= (event.joins.count.to_f / event.recruit.to_f * 100).round %>%</strong>達成</br>
             <%= event.joins.count %>人参加
-            （<strong><%= event.recruit %>人</strong>募集）
+            （<strong><%= event.recruit %>人</strong>募）
           </td>
           <td>
             <%= link_to event_path(event.id) do %>
@@ -28,9 +28,13 @@
           <td><%= event.start_at.strftime("%H:%M") %>〜<%= event.end_at.strftime("%H:%M") %></td>
           <td><%= event.location %></td>
           <td>
+          <% if user_signed_in? %>
             <%= link_to user_path(event.user.id) do %>
               <%= event.user.last_name + " " + event.user.first_name %> さん
             <% end %>
+          <% else %>
+              <%= event.user.last_name + " " + event.user.first_name %> さん
+          <% end %>
           </td>
         </tr>
       <% end %>

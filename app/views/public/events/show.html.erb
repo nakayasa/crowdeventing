@@ -44,7 +44,11 @@
   <tr>
     <td align="center">主催者</td>
     <td>
-      <%= link_to user_path(@event.user.id) do %>
+      <% if user_signed_in? %>
+        <%= link_to user_path(@event.user.id) do %>
+          <%= @event.user.last_name + " " + @event.user.first_name %> さん
+        <% end %>
+      <% else %>
         <%= @event.user.last_name + " " + @event.user.first_name %> さん
       <% end %>
     </td>
@@ -67,6 +71,7 @@
   <div class="row">
     <div class="col-8">
 
+<% if user_signed_in? %>
 <div>
   <%= form_with model: [@event, @comment] do |f| %>
     <%= f.text_area :comment, rows: '1', placeholder: "コメントをここに", size: "50x1" %>
@@ -87,6 +92,8 @@
         <% end %>
       </div>
     <% end %></br>
+  <% end %>
+
 <% end %>
 
     </div>
