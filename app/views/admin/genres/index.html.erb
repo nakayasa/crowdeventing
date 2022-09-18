@@ -20,6 +20,7 @@
           <tr>
             <th>ジャンル</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -27,6 +28,9 @@
         <% @genres.each do |genre| %>
           <tr>
             <td><%= genre.name %></td>
+            <% if genre.genre_image.present? %>
+            <td><%= image_tag genre.genre_image, size:'20x20' %></td>
+            <% end %>
             <td>
               <%= link_to edit_admin_genre_path(genre.id) do %>
               <div class="btn btn-sm btn-success">編集する</div>
