@@ -30,6 +30,7 @@
           <td>
           <% if user_signed_in? %>
             <%= link_to user_path(event.user.id) do %>
+              <%= image_tag event.user.get_profile_image(30,30), style: "border-radius: 50%; width: 30px; height: 30px; object-fit:cover;" %>
               <%= event.user.last_name + " " + event.user.first_name %> さん
             <% end %>
           <% else %>
