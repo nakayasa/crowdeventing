@@ -1,6 +1,5 @@
 class Admin::EventsController < ApplicationController
-
-  #before_action :authenticate_admin!
+  # before_action :authenticate_admin!
 
   def index
     @events = Event.where("date >= ?", DateTime.now).reorder(:date, :start_at)
@@ -9,13 +8,13 @@ class Admin::EventsController < ApplicationController
   end
 
   def past
-    @events =  Event.where("date < ?", DateTime.now).reorder(:date, :start_at).reverse
+    @events = Event.where("date < ?", DateTime.now).reorder(:date, :start_at).reverse
     @user = current_user
     @genres = Genre.all
   end
 
   def show
-    @event =Event.find(params[:id])
+    @event = Event.find(params[:id])
     @joins = Join.where(event_id: @event.id)
   end
 
@@ -26,10 +25,10 @@ class Admin::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-     flash[:notice] = "イベントが修正されました。"
-     redirect_to admin_event_path(@event.id)
+      flash[:notice] = "イベントが修正されました。"
+      redirect_to admin_event_path(@event.id)
     else
-     render :edit
+      render :edit
     end
   end
 
@@ -43,6 +42,4 @@ private
   def event_params
     params.require(:event).permit(:name, :body, :genre_id, :date, :start_at, :end_at, :location, :cost, :recruit)
   end
-
 end
-

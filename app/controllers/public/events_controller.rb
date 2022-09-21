@@ -1,5 +1,4 @@
 class Public::EventsController < ApplicationController
-
   before_action :correct_user, only: [:edit, :update]
 
   def new
@@ -13,10 +12,10 @@ class Public::EventsController < ApplicationController
     @user = current_user
     @events = Event.all
     if @event.save
-     flash[:notice] = "イベントが追加されました"
-     redirect_to event_path(@event.id)
+      flash[:notice] = "イベントが追加されました"
+      redirect_to event_path(@event.id)
     else
-     render :index
+      render :index
     end
   end
 
@@ -28,7 +27,7 @@ class Public::EventsController < ApplicationController
   end
 
   def past
-    @events =  Event.where("date < ?", DateTime.now).reorder(:date, :start_at).reverse
+    @events = Event.where("date < ?", DateTime.now).reorder(:date, :start_at).reverse
     @event = Event.new
     @user = current_user
     @genres = Genre.all
@@ -38,7 +37,7 @@ class Public::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @user = current_user
     @eventnew = Event.new
-    #当該イベントへJoinされたIDを検索する
+    # 当該イベントへJoinされたIDを検索する
     @joins = Join.where(event_id: @event.id)
     @comment = Comment.new
   end
@@ -50,10 +49,10 @@ class Public::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-     flash[:notice] = "イベントが修正されました。"
-     redirect_to event_path(@event.id)
+      flash[:notice] = "イベントが修正されました。"
+      redirect_to event_path(@event.id)
     else
-     render :edit
+      render :edit
     end
   end
 

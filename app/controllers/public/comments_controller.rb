@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment_event = @comment.event
     if @comment.save
-      #通知の作成
+      # 通知の作成
       @comment_event.create_notification_comment(current_user, @comment.id)
       redirect_to event_path(@event)
     end
@@ -18,8 +18,7 @@ class Public::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:comment)
-  end
+    def comment_params
+      params.require(:comment).permit(:comment)
+    end
 end

@@ -1,30 +1,29 @@
 Rails.application.routes.draw do
+  get "relationships/followings"
+  get "relationships/followers"
+  # 顧客用
+  # URL /users/sign_in ...
+  devise_for :users, controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
 
-  get 'relationships/followings'
-  get 'relationships/followers'
-# 顧客用
-# URL /users/sign_in ...
-devise_for :users, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-# 管理者用
-# URL /admin/sign_in ...
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
+  # 管理者用
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
 
   scope module: :public do
-    root :to =>"homes#top"
-    get "/about"=>"homes#about"
+    root to: "homes#top"
+    get "/about" => "homes#about"
     get "search" => "searches#search"
     get "users/check" => "users#check"
-    patch 'users/delete' => "users#delete"
+    patch "users/delete" => "users#delete"
     resources :users, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings', as: 'followings'
-      get 'followers' => 'relationships#followers', as: 'followers'
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
     end
     get "event/past" => "events#past"
     resources :events, only: [:new, :create, :update, :index, :show, :edit] do
@@ -36,12 +35,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
 
   namespace :admin do
-    get '/' => "homes#top"
+    get "/" => "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     get "event/past" => "events#past"
     resources :events, only: [:index, :show, :edit, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update, :show]
   end
 
-# For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
-
-  #before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def index
     @events = Event.all
@@ -12,9 +11,9 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @events = @user.events
     joins = Join.where(user_id: @user.id).pluck(:event_id)
-    #新しい日付順に並び替え
+    # 新しい日付順に並び替え
     @event_sort = Event.order(date: "DESC", start_at: "DESC")
-    #Joinしたイベントを探す
+    # Joinしたイベントを探す
     @join_events = @event_sort.find(joins)
   end
 
@@ -43,9 +42,7 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :affiliation, :employee_id, :body, :profile_image)
-  end
-
+    def user_params
+      params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :affiliation, :employee_id, :body, :profile_image)
+    end
 end
