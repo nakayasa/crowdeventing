@@ -38,6 +38,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     get '/' => "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
+    get "event/past" => "events#past"
     resources :events, only: [:index, :show, :edit, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update, :show]
   end

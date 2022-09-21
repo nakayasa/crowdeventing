@@ -3,7 +3,13 @@ class Admin::EventsController < ApplicationController
   #before_action :authenticate_admin!
 
   def index
-    @events = Event.all.order(:date, :start_at)
+    @events = Event.where("date >= ?", DateTime.now).reorder(:date, :start_at)
+    @user = current_user
+    @genres = Genre.all
+  end
+
+  def past
+    @events =  Event.where("date < ?", DateTime.now).reorder(:date, :start_at).reverse
     @user = current_user
     @genres = Genre.all
   end

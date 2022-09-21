@@ -1,0 +1,18 @@
+  <div class="row">
+    <div class="col-2", style="padding:50px;">
+
+        <%= render 'admin_genres_sidebar', genres: @genres %>
+  </div>
+
+    <div class="col-9">
+      <h4 style="padding-top:50px;">過去のイベント一覧（管理者画面）</h4>（全<%= @events.count %>件）
+
+      <%= link_to admin_events_path do %>
+        <div class="btn btn-sm btn-primary rounded-pill mb-2">イベント一覧</div>
+      <% end %>
+
+      <%= render 'public/events/lists', events: @events %>
+    </div>
+
+  </div>
+</div>
