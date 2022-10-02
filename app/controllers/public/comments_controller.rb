@@ -3,6 +3,7 @@ class Public::CommentsController < ApplicationController
     @event = Event.find(params[:event_id])
     @comments = @event.comments.order(created_at: :desc)
     @comment = @event.comments.build(comment_params)
+    @comment.score = Language.get_data(comment_params[:comment])  #この行を追加
     @comment.user_id = current_user.id
     @comment_event = @comment.event
     if @comment.save
