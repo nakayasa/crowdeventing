@@ -85,7 +85,7 @@
     <%= comment.comment %>
     (<%= comment.user.last_name %><%= comment.user.first_name %>
     <%= comment.created_at.strftime('%Y/%m/%d') %>)
-    <span class="sentiment-score">感情分析スコア=<%= comment.score %></span>
+    <span class="sentiment-score">感情スコア=<%= comment.score %></span>
     <% if comment.user == current_user %>
       <div class="btn btn-sm btn-outline-danger">
         <%= link_to event_comment_path(comment.event, comment), method: :delete do %>
